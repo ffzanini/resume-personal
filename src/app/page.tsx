@@ -1,67 +1,98 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
-import toast from "react-hot-toast";
-import { motion } from "framer-motion";
-import { RiMailLine, RiFileCopy2Line } from "react-icons/ri";
+import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
+import { RiMailLine, RiFileCopy2Line } from 'react-icons/ri'
+import { US as UsFlag, BR as BrFlag } from 'country-flag-icons/react/3x2'
 
-import { useTranslation } from "@/context";
-import { RichTextViewer, ScrollToTopButton, Wrapper } from "@/components";
-import { socialsResume } from "@/constants/socials";
+import { useTranslation } from '@/context'
+import { RichTextViewer, ScrollToTopButton, Wrapper } from '@/components'
+import { socialsResume } from '@/constants/socials'
+import { container } from '@/constants/animations'
+import { getBrowserLanguage } from '@/lib/utils'
 
 export default function Resume() {
-  const { translations, location } = useTranslation();
+  const { translations, setLocation, location } = useTranslation()
+  const [loading, setLoading] = useState(false)
 
-  const [loading, setLoading] = useState(false);
-
-  const text = translations.resume.about.description;
+  const text = translations.resume.about.description
+  const initialLanguage = getBrowserLanguage()
 
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        toast.success(translations.resume.toast);
+        toast.success(translations.resume.toast)
       })
       .catch(() => {
-        toast.error("Error");
-      });
-  };
+        toast.error('Error')
+      })
+  }
 
   const handleGeneratePDF = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await fetch("/api/generate-pdf", {
-        method: "POST",
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           url: `${window.location.origin}${window.location.pathname}?lang=${location}`,
           language: location,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error("Failed to generate PDF");
+        throw new Error('Failed to generate PDF')
       }
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-${location}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `resume-${location}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
     } catch (error) {
-      console.error(error);
-      alert("Failed to generate PDF");
+      console.error(error)
+      alert('Failed to generate PDF')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
+
+  function toggleLocaltion() {
+    if (location === 'en') {
+      setLocation('pt')
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', 'pt')
+      window.history.pushState({}, '', url.toString())
+
+      url.searchParams.delete('lang')
+      window.history.replaceState({}, '', url.pathname)
+    } else {
+      setLocation('en')
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', 'en')
+      window.history.pushState({}, '', url.toString())
+
+      url.searchParams.delete('lang')
+      window.history.replaceState({}, '', url.pathname)
+    }
+  }
+
+  useEffect(() => {
+    if (initialLanguage === 'pt') {
+      setLocation('pt')
+    } else {
+      setLocation('en')
+    }
+  }, [initialLanguage, setLocation])
 
   return (
     <Wrapper>
@@ -74,8 +105,30 @@ export default function Resume() {
             height={145}
             className="rounded-full border border-gray-900 dark:border-gray-50"
           />
-          <div className="flex flex-col gap-1">
-            <h4>{translations.resume.name}</h4>
+          <div className="flex flex-col gap-1 w-full">
+            <div className="flex flex-row items-center justify-between gap-1">
+              <h4>{translations.resume.name}</h4>
+              <motion.button
+                aria-label="Toggle language"
+                onClick={toggleLocaltion}
+                type="button"
+                whileHover={{ scale: 1.3, transition: { duration: 0.3 } }}
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="px-3 py-2"
+              >
+                {location !== 'pt' ? (
+                  <BrFlag title="Change to pt-BR" className="w-8 opacity-70" />
+                ) : (
+                  <UsFlag
+                    title="Trocar para en-US"
+                    className="w-8 opacity-70"
+                  />
+                )}
+              </motion.button>
+            </div>
+
             <p>{translations.resume.description}</p>
             <Link
               href="https://www.ffzanini.dev/"
@@ -205,7 +258,6 @@ export default function Resume() {
             </div>
           ))}
         </div>
-
         {/* language section */}
         <div className="flex flex-col gap-3">
           <h3>{translations.resume.language.title}</h3>
@@ -217,8 +269,7 @@ export default function Resume() {
           ))}
         </div>
       </div>
-
       <ScrollToTopButton />
     </Wrapper>
-  );
+  )
 }

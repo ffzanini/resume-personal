@@ -32,7 +32,7 @@ export function ScrollToTopButton() {
 
   return (
     <motion.button
-      className="fixed opacity-70 bottom-36 2xl:bottom-24 right-4 p-2 bg-primary-color-300 dark:bg-primary-color-800 rounded-full"
+      className="fixed opacity-70 bottom-8 right-4 p-2 bg-primary-color-300 dark:bg-primary-color-800 rounded-full"
       whileHover={{ scale: 1.1 }}
       style={{ display: isVisible ? 'block' : 'none' }}
       onClick={goTop}

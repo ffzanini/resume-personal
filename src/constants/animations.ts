@@ -1,4 +1,4 @@
-import { AnimVariants } from "@/lib/utils";
+import { AnimVariants } from '@/lib/utils'
 
 export const indicator = {
   initial: {
@@ -8,7 +8,7 @@ export const indicator = {
     opacity: show ? 1 : 0,
     x: show ? 0 : -10,
   }),
-};
+}
 
 export const contentAnim: AnimVariants = {
   initial: {
@@ -27,10 +27,10 @@ export const contentAnim: AnimVariants = {
     y: -20,
     transition: {
       duration: 0.5,
-      ease: "easeInOut",
+      ease: 'easeInOut',
     },
   },
-};
+}
 
 export const container = {
   hidden: { opacity: 0 },
@@ -40,12 +40,12 @@ export const container = {
       staggerChildren: 0.5,
     },
   },
-};
+}
 
 export const item = {
   hidden: { opacity: 0 },
   show: { opacity: 1 },
-};
+}
 
 export const cardAnim: AnimVariants = {
   initial: {
@@ -57,4 +57,4 @@ export const cardAnim: AnimVariants = {
   exit: {
     opacity: 0,
   },
-};
+}

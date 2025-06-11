@@ -134,6 +134,11 @@
         "id": 2,
         "title": "Inglês",
         "desciption": "Compreende Bem, Fala Razoavelmente, Lê Bem, Escreve Razoavelmente"
+      },
+      {
+        "id": 3,
+        "title": "Espanhol",
+        "desciption": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente, Escreve Razoavelmente"
       }
     ]
   }

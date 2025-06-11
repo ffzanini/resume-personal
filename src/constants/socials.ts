@@ -1,11 +1,4 @@
-import {
-  RiLinkedinLine,
-  RiGithubLine,
-  RiInstagramLine,
-  RiTwitterXLine,
-  RiYoutubeLine,
-  RiMailLine,
-} from 'react-icons/ri'
+import { RiLinkedinLine, RiGithubLine } from 'react-icons/ri'
 
 export const socialsResume = [
   {

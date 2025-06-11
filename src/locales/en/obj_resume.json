@@ -134,6 +134,11 @@
         "id": 2,
         "title": "English",
         "desciption": "Understands Well, Speaks Reasonably, Reads Well, Writes Reasonably"
+      },
+      {
+        "id": 3,
+        "title": "Spanish",
+        "desciption": "Understands Reasonably, Speaks Reasonably, Reads Reasonably, Writes Reasonably"
       }
     ]
   }

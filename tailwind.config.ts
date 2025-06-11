@@ -29,8 +29,8 @@ const config: Config = {
         h1: '3.0rem',
       },
       colors: {
-        'dark-theme-background': '#121212',
-        'white-theme-background': '#FFFFFF',
+        'dark-theme-background': '#161618',
+        'white-theme-background': '#faf9f6',
 
         'primary-color-50': '#fff0f2',
         'primary-color-100': '#ffe2e7',
@@ -47,13 +47,13 @@ const config: Config = {
         'error-dark-theme': '#CF6679',
         'error-white-theme': '#B00020',
 
-        'primary-color-dark-theme-text': '#FFFFFF',
-        'opacity-color-dark-theme-text': 'rgba(255,255,255, 0.87)',
-        'disabled-text-color-dark-theme': 'rgba(255,255,255, 0.38)',
+        'primary-color-dark-theme-text': '#faf9f6',
+        'opacity-color-dark-theme-text': 'rgba(250, 249, 246, 0.87)',
+        'disabled-text-color-dark-theme': 'rgba(250, 249, 246, 0.38)',
 
-        'primary-color-white-theme-text': '#000000',
-        'opacity-color-white-theme-text': 'rgba(0,0,0, 0.87)',
-        'disable-text-color-white-theme': 'rgba(0,0,0, 0.38)',
+        'primary-color-white-theme-text': '#161618',
+        'opacity-color-white-theme-text': 'rgba(22, 22, 24, 0.87)',
+        'disable-text-color-white-theme': 'rgba(22, 22, 24, 0.38)',
 
         'gray-900': '#121212',
         'gray-800': '#272727',
