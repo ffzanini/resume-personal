@@ -84,7 +84,7 @@ export default function Resume() {
   }, [theme]);
 
   return (
-    <main className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 lg:px-8">
+    <main className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-28 xl:border-x border-dark-theme/20 dark:border-white-theme/20 ">
       <div className="flex flex-col page-break-before:always">
         <div className="relative flex flex-row justify-between space-y-4 no-print">
           <div className="flex items-center">
