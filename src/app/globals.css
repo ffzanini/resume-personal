@@ -1,173 +1,76 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@media print {
-  .no-print {
-    display: none !important;
-  }
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dark-theme: #161618;
+  --color-white-theme: #faf9f6;
+
+  --color-primary-50: #fff0f2;
+  --color-primary-100: #ffe2e7;
+  --color-primary-200: #ffc9d5;
+  --color-primary-300: #ff9db3; /* dark theme */
+  --color-primary-400: #ff668b;
+  --color-primary-500: #ff3067;
+  --color-primary-600: #f32263; /* main color */
+  --color-primary-700: #cc0447; /* variant color */
+  --color-primary-800: #aa0743; /* light theme */
+  --color-primary-900: #920940;
+  --color-primary-950: #52001e;
 }
 
-* {
-	margin: 0;
-  padding: 0;
-	line-height: 1.5;
-	font-family: var(--font-mavenPro);
-	text-underline-offset: 4px;
-	color: theme("colors.gray-400");
-	transition: color 0.1s ease-in-out, background-color 0.2s ease-in-out;
-	box-sizing: content-box;
+:root {
+  --background: var(--color-white-theme);
+  --foreground: var(--color-dark-theme);
+
+  --primary: var(--color-primary-800);
+  --content-text: var(--color-white-theme);
+  --font-sans: system-ui, sans-serif;
+  --font-mono: monospace;
 }
 
-html[class="dark"] {
-	--bg: theme("colors.dark-theme-background");
-	--heading-color: theme("colors.primary-color-dark-theme-text");
-	--text-color: theme("colors.opacity-color-dark-theme-text");
-	--text-color-bold: theme("colors.primary-color-dark-theme-text");
-	--text-hover-link: theme("colors.primary-color-300");
+.dark {
+  --background: var(--color-dark-theme);
+  --foreground: var(--color-white-theme);
+
+  --primary: var(--color-primary-300);
+  --content-text: var(--color-dark-theme);
 }
 
-
-html[class="light"] {
-	--bg: theme("colors.white-theme-background");
-	--heading-color: theme("colors.primary-color-white-theme-text");
-	--text-color: theme("colors.opacity-color-white-theme-text");
-	--text-color-bold: theme("colors.primary-color-white-theme-text");
-	--text-hover-link: theme("colors.primary-color-800");
+html {
+  scroll-behavior: smooth;
 }
 
-html, body {
-	background-color: var(--bg);
-	height: 100%;
-
+body,
+select {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
 }
 
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+.sanitized-json a {
+  color: inherit;
 }
 
-h1, h2, h3, h4, path, button {
-	color: var(--heading-color);
-	line-height: 1.25;
+.sanitized-json a:hover {
+  color: var(--primary);
 }
 
-h1 {
-	font-size: theme("fontSize.h1");
+.footer-icon a {
+  color: inherit;
 }
 
-h2 {
-	font-size: theme("fontSize.h2");
+.footer-icon a:hover {
+  color: var(--primary);
 }
 
-h3 {
-	font-size: theme("fontSize.h3");
+/* change scroll bars layout */
+
+*::-webkit-scrollbar {
+  width: 0.01px;
+  background-color: var(--background);
 }
 
-h4 {
-	font-size: theme("fontSize.h4");
-}
-
- p, u, span, li, input, button, label, select, option, textarea {
-	font-size: theme("fontSize.body");
-	color: var(--text-color);
-}
-
-b, a {
-	font-size: theme("fontSize.body");
-	color: var(--text-color-bold);
-	font-weight: bold;
-}
-
-span {
-	color: inherit;
-}
-
-.progress-bar {
-  height: 2px;
-  background: var(--text-color);
-  transform-origin: 0%;
-}
-
-input, textarea {
-	background-color: transparent;
-	border: 1px solid theme("colors.gray-700");
-	border-left: 0;
-	border-right: 0;
-	border-top: 0;
-	padding: 0.5rem;
-	color: var(--heading-color)
-}
-
-a:hover {
-	transition: color 0.3s ease-in-out;
-	color: var(--text-hover-link);
-}
-
-input:focus, textarea:focus {
-	outline: none;
-	border-color: theme("colors.primary-color-600");
-}
-
- /* change scroll bars layout */
-
-*::-webkit-scrollbar{
-	width:0.01px;
-	background-color: var(--bg);
-}
-
-*::-webkit-scrollbar-thumb{
-	background-color: var(--bg);
-}
-
- /* sections position */
-
-.alter-section:nth-child(even) {
-	flex-direction: row-reverse;
-	@media (max-width: 984px) {
-		flex-direction: column-reverse;
-	}
-}
-
- /* icons colors and hovers */
- a:hover .icon-stack {
-	transition: color 0.3s ease-in-out, fill 0.3s ease-in-out;
-	color: var(--text-hover-link);
-	fill: var(--text-hover-link);
-}
-
-.icon-stack {
-	width: 35px;
-	height: 35px;
-}
-
-.icon-stack:hover {
-	transition: color 0.3s ease-in-out;
-	fill: var(--text-hover-link);
-}
-
-.icon-body {
-	width: 24px;
-	height: 24px;
-}
-
-.icon-body:hover {
-	transition: color 0.3s ease-in-out;
-	fill: var(--text-hover-link);
-}
-
-.icon-footer {
-	width: 20px;
-	height: 20px;
-}
-
-.icon-footer:hover {
-	transition: color 0.3s ease-in-out;
-	fill: var(--text-hover-link);
-}
-
-.div-github:hover .icon-body {
-	transition: color 0.3s ease-in-out;
-	fill: var(--text-hover-link);
+*::-webkit-scrollbar-thumb {
+  background-color: var(--background);
 }

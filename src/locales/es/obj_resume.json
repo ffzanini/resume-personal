@@ -1,0 +1,143 @@
+{
+  "name": "Felipe Frantz Zanini",
+  "description": "Ingeniero de Software Senior en Pelotas, Brasil",
+  "toast": "Texto copiado al portapapeles",
+  "icos": {
+    "mail": "Enviar correo",
+    "bio": "Copiar biografía",
+    "pdf_click": "Descargar PDF",
+    "pdf_loading": "Cargando..."
+  },
+  "about": {
+    "title": "sobre mí",
+    "description": "Mi trayectoria en el desarrollo de software comenzó en 2008, durante la educación técnica. En 2010, terminé el curso y comencé mi primera pasantía en programación — desde entonces, continúo creciendo continuamente en el área. Tras ser contratado como ingeniero de software aún en 2010, trabajé en más de 50 proyectos, enfocándome en PHP, JavaScript y varias otras lenguajes y bibliotecas. Impulsado por mi pasión por la tecnología y por mejorarme, obtuve un título en Gestión de Tecnología de Información, una especialización en Planificación Estratégica en TI e inicié una Maestría en Ciencias de la Computación."
+  },
+  "experience": {
+    "title": "Experiencia",
+    "information": [
+      {
+        "id": 1,
+        "initial_date": "2021",
+        "final_date": "Presente",
+        "title": "Ingeniero de Software Senior & Tech Lead en nav9 ➚",
+        "link": "https://nav9.tech",
+        "description": "Responsable de desarrollar proyectos Frontend para los clientes de la empresa, también como consultor y líder técnico. Aplico buenas prácticas y código limpio para empresas destacadas en el mercado brasileño como Shoppings Iguatemi, UFC, EducaCross, Grupo SEB, Rede AZ, entre otras. Utilizo las principales tecnologías del mercado, enfocándome especialmente en React, Next y TypeScript, para llevar innovación y calidad a los proyectos en los que participo."
+      },
+      {
+        "id": 2,
+        "initial_date": "2020",
+        "final_date": "2021",
+        "title": "Becario de Maestría CAPES en UFPel ➚",
+        "link": "https://portal.ufpel.edu.br/en/",
+        "description": "Fui responsable de ampliar el simulador desarrollado y utilizado por el grupo de investigación para la modelización y simulación de Redes de Sensores Inalámbricos (WSN). Utilizando datos reales recogidos por trampas diseñadas por el grupo, simulamos su comportamiento en entornos naturales, lo que nos permitió obtener información sobre la duración de la batería, capacidad de recolección de datos, alcance de comunicación entre las trampas y su cobertura. El simulador Eboracum se desarrolló y amplió principalmente en Java. Publicamos dos artículos científicos sobre este trabajo: uno centrado en el <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>rendimiento y consumo de energía</a></u></b>, y otro sobre la <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>simulación y modelización de una WSN</a></u></b>."
+      },
+      {
+        "id": 3,
+        "initial_date": "2016",
+        "final_date": "2020",
+        "title": "Fundador & CTO en Alpago ➚",
+        "link": "https://wp.ufpel.edu.br/conectar/?s=alpago",
+        "description": "ALPAGO fue creada para apoyar la organización y comunicación de la cadena productiva de la ovinocultura, abordando dos problemas históricos que aún afectan al sector. En 2016, la startup fue incubada en Conectar, y en 2017 se graduó en el evento <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b>, destacándose por su relevancia. La sostenibilidad de la ovinocultura depende de acciones de coordinación sistémica en todos los eslabones de la cadena.\nFui responsable del desarrollo del sistema, que incluyó: levantamiento de requisitos, evaluación de viabilidad, documentación, diseño, desarrollo, elección de metodologías y pruebas. Además, interactué con usuarios y socios para obtener comentarios sobre el sistema, generando continuamente más valor para la comunidad.\nLas principales tecnologías utilizadas fueron: PHP con el framework CodeIgniter, HTML5, CSS3 con Bootstrap, JavaScript y MySQL."
+      },
+      {
+        "id": 4,
+        "initial_date": "2010",
+        "final_date": "2015",
+        "title": "Ingeniero de Software en ZapShop Informática ➚",
+        "link": "https://zapshop.com.br/sobre/",
+        "description": "Fui responsable de atender a clientes en el área de desarrollo, analizaba los sistemas propuestos, creaba documentación y desarrollaba soluciones personalizadas. Además, brindé capacitación a clientes, capacité a nuevos colaboradores y realicé pruebas y mantenimiento de los sistemas.\nPrincipales tecnologías utilizadas: Visual Basic, PHP con frameworks CodeIgniter, Laravel y CakePHP, HTML5, CSS3 con Bootstrap y Material‑UI, JavaScript y MySQL."
+      }
+    ]
+  },
+  "education": {
+    "title": "Educación",
+    "information": [
+      {
+        "id": 1,
+        "initial_date": "2019",
+        "final_date": "Incompleto",
+        "title": "Maestría en Ciencias de la Computación en UFPel ➚",
+        "link": "https://portal.ufpel.edu.br/en/",
+        "region": "Pelotas, Brasil"
+      },
+      {
+        "id": 2,
+        "initial_date": "2014",
+        "final_date": "2015",
+        "title": "Especialización en Gestión de TI en IDEAU ➚",
+        "link": "https://www.bage.ideau.com.br/",
+        "region": "Bagé, Brasil"
+      },
+      {
+        "id": 3,
+        "initial_date": "2011",
+        "final_date": "2013",
+        "title": "Grado en Tecnología en Gestión de TI en URCAMP ➚",
+        "link": "https://urcamp.edu.br/",
+        "region": "Caçapava do Sul, Brasil"
+      },
+      {
+        "id": 4,
+        "initial_date": "2008",
+        "final_date": "2010",
+        "title": "Técnico en Informática en URCAMP ➚",
+        "link": "https://urcamp.edu.br/",
+        "region": "Dom Pedrito, Brasil"
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "information": [
+      {
+        "id": 1,
+        "initial_date": "2022",
+        "final_date": "2022",
+        "title": "CS50’s Web Programming with JavaScript",
+        "region": "Harvard University"
+      },
+      {
+        "id": 2,
+        "initial_date": "2021",
+        "final_date": "2021",
+        "title": "BootCamp Ignite",
+        "region": "RocketSeat"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades",
+    "information": [
+      {
+        "id": 1,
+        "title": "JavaScript",
+        "desciption": "Durante los últimos tres años, me he centrado en este lenguaje de programación. Lo utilizo en desarrollo front-end con React, principalmente usando el framework Next.js. También participé en proyectos con otros frameworks, como Angular y Vue. Además, lo estoy usando para mejorar mis habilidades en automatización de pruebas con Jest."
+      },
+      {
+        "id": 2,
+        "title": "PHP",
+        "desciption": "Tengo amplia experiencia con mi lenguaje de programación “nativo”, acumulando más de 10 años de práctica. A lo largo de mi carrera, he utilizado y sigo utilizando este lenguaje en diversas aplicaciones. En el desarrollo, construí APIs y grandes sistemas usando frameworks CodeIgniter y Laravel. También trabajé con bases de datos relacionales como MySQL y no relacionales como MongoDB."
+      }
+    ]
+  },
+  "language": {
+    "title": "Idiomas",
+    "information": [
+      {
+        "id": 1,
+        "title": "Portugués",
+        "desciption": "Comprende bien, habla bien, lee bien, escribe bien"
+      },
+      {
+        "id": 2,
+        "title": "Inglés",
+        "desciption": "Comprende bien, habla moderadamente, lee bien, escribe moderadamente"
+      },
+      {
+        "id": 3,
+        "title": "Español",
+        "desciption": "Comprende moderadamente, habla moderadamente, lee moderadamente, escribe moderadamente"
+      }
+    ]
+  }
+}

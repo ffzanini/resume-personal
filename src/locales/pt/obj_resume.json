@@ -1,18 +1,16 @@
 {
   "name": "Felipe Frantz Zanini",
   "description": "Engenheiro de Software Sênior em Pelotas, Brasil",
-  "toast":"Texto copiado para a área de transferência",
-  "icos": 
-    {
-      "mail": "Enviar e-mail",
-      "bio": "Copiar bio",
-      "pdf_click": "Baixar PDF",
-      "pdf_loading": "Carregando..."
-    }
-  ,
+  "toast": "Texto copiado para a área de transferência",
+  "icos": {
+    "mail": "Enviar e-mail",
+    "bio": "Copiar bio",
+    "pdf_click": "Baixar PDF",
+    "pdf_loading": "Carregando..."
+  },
   "about": {
     "title": "Sobre",
-    "description": "Minha jornada no desenvolvimento de software começou em 2008, durante o ensino técnico. Em 2010, após concluir o curso, iniciei meu primeiro estágio em programação e, desde então, nunca parei de estudar e evoluir. Ao ser efetivado como engenheiro de software, participei de mais de 40 projetos, utilizando diversas tecnologias, com ênfase em PHP. Apaixonado pela área e sempre buscando aprimoramento, obtive um diploma em Gestão da Tecnologia da Informação e uma especialização em Planejamento Estratégico em TI. Também iniciei um Mestrado em Ciência da Computação."
+    "description": "Minha trajetória no desenvolvimento de software começou em 2008, durante o ensino técnico. Em 2010, concluí o curso e iniciei meu primeiro estágio em programação — desde então, sigo evoluindo continuamente na área. Após ser efetivado como engenheiro de software ainda no ano de 2010, atuei em mais de 50 projetos, com foco em PHP, JavaScript e diversas outras linguagens de programação e bibliotecas. Movido pela paixão por tecnologia e e pra estar sempre me aprimorando, conquistei um diploma em Gestão da Tecnologia da Informação, uma especialização em Planejamento Estratégico em TI e iniciei um Mestrado em Ciência da Computação."
   },
   "experience": {
     "title": "Experiência",

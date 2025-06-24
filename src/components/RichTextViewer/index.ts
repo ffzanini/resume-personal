@@ -1,1 +1,1 @@
-export * from './RichTextViewer'
+export * from "./RichTextViewer";

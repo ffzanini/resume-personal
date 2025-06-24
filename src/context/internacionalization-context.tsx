@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 import {
   createContext,
   useContext,
@@ -8,63 +7,89 @@ import {
   useCallback,
   useEffect,
   ReactNode,
-} from 'react'
-import { en, pt } from '../locales'
+} from "react";
 
-type Locations = 'pt' | 'en'
+import { en, es, pt } from "../locales";
+
+type Locations = "en" | "es" | "pt";
 
 export interface InternacionalizationInterface {
-  location: Locations
-  setLocation: (location: Locations) => void
-  translations: typeof pt
+  location: Locations;
+  setLocation: (location: Locations) => void;
+  translations: typeof pt;
 }
 
 const InternacionalizationContext = createContext(
-  {} as InternacionalizationInterface,
-)
+  {} as InternacionalizationInterface
+);
 
 const useTranslation = () => {
-  const context = useContext(InternacionalizationContext)
+  const context = useContext(InternacionalizationContext);
 
   if (context === undefined) {
     throw new Error(
-      'useTranslation must be used within InternacionalizationProvider',
-    )
+      "useTranslation must be used within InternacionalizationProvider"
+    );
   }
 
-  return context
-}
+  return context;
+};
+
+const getInitialLanguage = (): Locations => {
+  if (typeof window === "undefined") return "en";
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get("lang");
+
+  if (lang === "pt" || lang === "en" || lang === "es") return lang as Locations;
+
+  const browserLang = navigator.language?.split("-")[0];
+  if (browserLang === "pt" || browserLang === "en" || browserLang === "es") {
+    return browserLang as Locations;
+  }
+
+  return "en";
+};
 
 const InternacionalizationProvider = ({
   children,
 }: {
-  children: ReactNode
+  children: ReactNode;
 }) => {
-  const [location, setLocation] = useState<Locations>('pt')
+  const [location, setLocation] = useState<Locations | null>(null);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const lang = urlParams.get('lang')
-    if (lang && (lang === 'pt' || lang === 'en')) {
-      setLocation(lang as Locations)
+    const initialLang = getInitialLanguage();
+    setLocation(initialLang);
+  }, []);
+
+  useEffect(() => {
+    if (location) {
+      document.body.setAttribute("data-language-ready", "true");
     }
-  }, [])
+  }, [location]);
 
   const getTranslations = useCallback(() => {
-    if (location === 'en') return en
-    return pt
-  }, [location])
+    if (location === "en") return en;
+    if (location === "es") return es;
+    return pt;
+  }, [location]);
 
-  const objTranslations = useMemo(
-    () => ({ location, setLocation, translations: getTranslations() }),
-    [location, getTranslations],
-  )
+  const objTranslations = useMemo(() => {
+    return {
+      location: location || "pt",
+      setLocation,
+      translations: getTranslations(),
+    };
+  }, [location, getTranslations]);
+
+  if (location === null) return null;
 
   return (
     <InternacionalizationContext.Provider value={objTranslations}>
       {children}
     </InternacionalizationContext.Provider>
-  )
-}
+  );
+};
 
-export { InternacionalizationProvider, useTranslation }
+export { InternacionalizationProvider, useTranslation };

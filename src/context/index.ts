@@ -1,1 +1,1 @@
-export * from './internacionalization-context'
+export * from "./internacionalization-context";

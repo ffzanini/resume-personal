@@ -1,7 +1,7 @@
-import resume from './obj_resume.json'
+import resume from "./obj_resume.json";
 
 const en = {
   resume,
-}
+};
 
-export default en
+export default en;

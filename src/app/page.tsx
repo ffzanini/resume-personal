@@ -1,103 +1,116 @@
-'use client'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
 
-import toast from 'react-hot-toast'
-import { motion } from 'framer-motion'
-import { RiMailLine, RiFileCopy2Line } from 'react-icons/ri'
-import { US as UsFlag, BR as BrFlag } from 'country-flag-icons/react/3x2'
+import { useLayoutEffect, useState } from "react";
 
-import { useTranslation } from '@/context'
-import { RichTextViewer, ScrollToTopButton, Wrapper } from '@/components'
-import { socialsResume } from '@/constants/socials'
-import { container } from '@/constants/animations'
-import { getBrowserLanguage } from '@/lib/utils'
+import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { LuMail, LuCopy, LuSun, LuMoonStar } from "react-icons/lu";
+
+import { useTranslation } from "@/context";
+import {
+  LanguageSelect,
+  ResumeDownloadButton,
+  RichTextViewer,
+} from "@/components";
+import { socialsResume } from "@/constants/socials";
+import { fontRyanaLovely } from "./fonts";
+import { cn } from "@/libs/cn";
 
 export default function Resume() {
-  const { translations, setLocation, location } = useTranslation()
-  const [loading, setLoading] = useState(false)
+  const { translations, setLocation, location } = useTranslation();
+  const { theme, setTheme } = useTheme();
 
-  const text = translations.resume.about.description
-  const initialLanguage = getBrowserLanguage()
+  const [checkTheme, setCheckTheme] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
+
+  const text = translations.resume.about.description;
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        toast.success(translations.resume.toast)
+        toast.success(translations.resume.toast);
       })
       .catch(() => {
-        toast.error('Error')
-      })
-  }
+        toast.error("Error");
+      });
+  };
 
   const handleGeneratePDF = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await fetch('/api/generate-pdf', {
-        method: 'POST',
+      const response = await fetch("/api/generate-pdf", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           url: `${window.location.origin}${window.location.pathname}?lang=${location}`,
           language: location,
+          theme: theme,
         }),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to generate PDF')
+        throw new Error("Failed to generate PDF");
       }
 
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `resume-${location}.pdf`
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `resume-${location}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
     } catch (error) {
-      console.error(error)
-      alert('Failed to generate PDF')
+      console.error(error);
+      alert("Failed to generate PDF");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
-  function toggleLocaltion() {
-    if (location === 'en') {
-      setLocation('pt')
-      const url = new URL(window.location.href)
-      url.searchParams.set('lang', 'pt')
-      window.history.pushState({}, '', url.toString())
-
-      url.searchParams.delete('lang')
-      window.history.replaceState({}, '', url.pathname)
-    } else {
-      setLocation('en')
-      const url = new URL(window.location.href)
-      url.searchParams.set('lang', 'en')
-      window.history.pushState({}, '', url.toString())
-
-      url.searchParams.delete('lang')
-      window.history.replaceState({}, '', url.pathname)
+  };
+  useLayoutEffect(() => {
+    if (theme) {
+      setCheckTheme(theme);
     }
-  }
-
-  useEffect(() => {
-    if (initialLanguage === 'pt') {
-      setLocation('pt')
-    } else {
-      setLocation('en')
-    }
-  }, [initialLanguage, setLocation])
+  }, [theme]);
 
   return (
-    <Wrapper>
-      <div className="flex flex-col gap-6 p-4 page-break-before: always">
-        <div className="flex flex-row space-x-4 2xl:space-x-12 items-center">
+    <main className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col page-break-before:always">
+        <div className="relative flex flex-row justify-between space-y-4 no-print">
+          <div className="flex items-center">
+            <span
+              className={cn(
+                `${fontRyanaLovely.className} opacity-100 transition-opacity duration-200 text-3xl`
+              )}
+            >
+              2fZ
+            </span>
+          </div>
+          <div className="flex items-center space-x-6">
+            <div className="relative">
+              <LanguageSelect selected={location} onChange={setLocation} />
+            </div>
+            <motion.button onClick={toggleTheme} className="cursor-pointer">
+              {checkTheme === "dark" ? (
+                <LuSun className="h-5 w-5 hover:rotate-12 transition-transform" />
+              ) : (
+                <LuMoonStar className="h-5 w-5 hover:rotate-12 transition-transform" />
+              )}
+            </motion.button>
+          </div>
+        </div>
+
+        <div className="flex flex-row space-x-4 lg:space-x-8 items-center">
           <Image
             src="/images/me_home.jpeg"
             alt="Profile photo"
@@ -105,94 +118,89 @@ export default function Resume() {
             height={145}
             className="rounded-full border border-gray-900 dark:border-gray-50"
           />
-          <div className="flex flex-col gap-1 w-full">
-            <div className="flex flex-row items-center justify-between gap-1">
-              <h4>{translations.resume.name}</h4>
-              <motion.button
-                aria-label="Toggle language"
-                onClick={toggleLocaltion}
-                type="button"
-                whileHover={{ scale: 1.3, transition: { duration: 0.3 } }}
-                variants={container}
-                initial="hidden"
-                animate="show"
-                className="px-3 py-2"
-              >
-                {location !== 'pt' ? (
-                  <BrFlag title="Change to pt-BR" className="w-8 opacity-70" />
-                ) : (
-                  <UsFlag
-                    title="Trocar para en-US"
-                    className="w-8 opacity-70"
-                  />
-                )}
-              </motion.button>
+          <div className="flex flex-col w-full">
+            <div className="grid grid-row-2 md:flex md:flex-row md:items-center gap-2 justify-between">
+              <h1 className="text-lg md:text-2xl font-bold order-2 md:order-1">
+                {translations.resume.name}
+              </h1>
             </div>
-
-            <p>{translations.resume.description}</p>
+            <span className="text-base md:text-lg mb-2">
+              {translations.resume.description}
+            </span>
+            <button
+              onClick={handleGeneratePDF}
+              disabled={loading}
+              className="no-print cursor-pointer"
+            >
+              <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80"></div>
+            </button>
             <Link
               href="https://www.ffzanini.dev/"
-              className="w-32 text-center rounded-full bg-black hover:bg-primary-color-800 border border-gray-200 
-              dark:bg-white dark:border-gray-600 dark:hover:bg-primary-color-300 dark:hover:border-gray-600"
+              className="w-32 flex flex-row justify-center items-center bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-white font-semibold py-1 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl shadow-primary-600/25 group"
             >
-              <p className="text-white dark:text-black">ffzanini.dev</p>
+              ffzanini.dev
             </Link>
           </div>
         </div>
-        {/* about section */}
-        <div className="flex flex-col 2xl:flex-row gap-2 2xl:gap-6">
+
+        <div className="flex flex-col md:flex-row md:gap-6 gap-2 my-4">
           <motion.a href="mailto:devffzanini@gmail.com" target="_blank">
-            <div className="flex flex-row gap-1 items-center font-extrabold opacity-100 hover:opacity-80">
-              <RiMailLine className="icon-body" />
+            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
+              <LuMail className="h-4 w-4" />
               <p>{translations.resume.icos.mail}</p>
             </div>
           </motion.a>
-          <button
-            onClick={handleGeneratePDF}
-            disabled={loading}
-            className="no-print"
-          ></button>
-          <button onClick={copyToClipboard} className="no-print">
-            <div className="flex flex-row gap-1 items-center font-extrabold opacity-100 hover:opacity-80">
-              <RiFileCopy2Line className="icon-body" />
+          {location === "pt" && <ResumeDownloadButton language={location} />}
+
+          <button onClick={copyToClipboard} className="no-print cursor-pointer">
+            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
+              <LuCopy className="icon-body" />
               <p>{translations.resume.icos.bio}</p>
             </div>
           </button>
         </div>
-        {/* about section */}
+
         <div className="flex flex-col gap-3">
-          <h3>{translations.resume.about.title}</h3>
-          <p>{text}</p>
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.about.title}
+          </h1>
+          <span className="text-base md:text-lg mb-2">{text}</span>
         </div>
-        {/* links section */}
-        <div className="flex flex-col gap-2">
+
+        <div className="flex flex-col gap-2 my-4">
           {socialsResume.map(({ href, icon: Icon, name, label }) => (
-            <div key={name} className="flex flex-row gap-3 items-center">
-              <Icon className="icon-footer" />
-              <p>{name}</p>
-              <motion.a href={href} target="_blank">
+            <div key={name} className="flex flex-row gap-2 items-center">
+              <Icon className="h-5 w-5" />
+              <span className="text-base">{name} - </span>
+              <motion.a
+                className="text-base font-semibold"
+                href={href}
+                target="_blank"
+              >
                 {label}
               </motion.a>
             </div>
           ))}
         </div>
-        {/* experience section */}
-        <div className="flex flex-col gap-6 2xl:gap-3">
-          <h3>{translations.resume.experience.title}</h3>
+
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.experience.title}
+          </h1>
           {translations.resume.experience.information.map((exp) => (
             <div
               key={exp.id}
-              className="flex flex-col 2xl:flex-row gap-1 pt-3 2xl:gap-4"
+              className="flex flex-col md:flex-row pt-4 md:pt-8 gap-4 print:page-break"
             >
-              <div className="flex flex-row min-w-0 2xl:min-w-[220px]">
-                <p>
+              <div className="flex flex-row min-w-0 md:min-w-[220px]">
+                <span className="text-lg font-semibold">
                   {exp.initial_date} — {exp.final_date}
-                </p>
+                </span>
               </div>
               <div className="flex flex-col">
                 <motion.a
                   href={exp.link}
-                  className="text-xl hover:underline"
+                  className="text-lg md:text-xl font-semibold hover:underline"
                   target="_blank"
                 >
                   {exp.title}
@@ -202,74 +210,87 @@ export default function Resume() {
             </div>
           ))}
         </div>
-        {/* education section */}
-        <div className="flex flex-col gap-3">
-          <h3>{translations.resume.education.title}</h3>
+
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.education.title}
+          </h1>
           {translations.resume.education.information.map((edu) => (
             <div
               key={edu.id}
-              className="flex flex-col 2xl:flex-row gap-1 pt-3 2xl:gap-4"
+              className="flex flex-col md:flex-row pt-4 md:pt-8 gap-4 print:page-break"
             >
-              <div className="flex flex-row min-w-0 2xl:min-w-[220px]">
-                <p>
+              <div className="flex flex-row min-w-0 md:min-w-[220px]">
+                <span className="text-lg font-semibold">
                   {edu.initial_date} — {edu.final_date}
-                </p>
+                </span>
               </div>
               <div className="flex flex-col">
                 <motion.a
                   href={edu.link}
-                  className="text-xl hover:underline"
+                  className="text-lg md:text-xl font-semibold hover:underline"
                   target="_blank"
                 >
                   {edu.title}
                 </motion.a>
-                <p>{edu.region}</p>
+                <span className="text-base md:text-lg">{edu.region}</span>
               </div>
             </div>
           ))}
         </div>
-        {/* certifications section */}
-        <div className="flex flex-col gap-3">
-          <h3>{translations.resume.certifications.title}</h3>
+
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.certifications.title}
+          </h1>
           {translations.resume.certifications.information.map((cert) => (
             <div
               key={cert.id}
-              className="flex flex-col 2xl:flex-row gap-1 pt-3 2xl:gap-4"
+              className="flex flex-col md:flex-row pt-4 md:pt-8 gap-4 print:page-break"
             >
-              <div className="flex flex-row min-w-0 2xl:min-w-[220px]">
-                <p>
+              <div className="flex flex-row min-w-0 md:min-w-[220px]">
+                <span className="text-lg font-semibold">
                   {cert.initial_date} — {cert.final_date}
-                </p>
+                </span>
               </div>
               <div className="flex flex-col">
-                <h4>{cert.title}</h4>
-                <p>{cert.region}</p>
+                <h1 className="text-lg md:text-xl font-bold">{cert.title}</h1>
+                <span className="text-base md:text-lg">{cert.region}</span>
               </div>
             </div>
           ))}
         </div>
-        {/* skills section */}
-        <div className="flex flex-col gap-3">
-          <h3>{translations.resume.skills.title}</h3>
+
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.skills.title}
+          </h1>
           {translations.resume.skills.information.map((skill) => (
-            <div key={skill.id} className="flex flex-col gap-1 pt-3">
-              <h4>{skill.title}</h4>
-              <p>{skill.desciption}</p>
+            <div
+              key={skill.id}
+              className="flex flex-col pt-4 gap-2 print:page-break"
+            >
+              <h1 className="text-lg md:text-xl font-bold">{skill.title}</h1>
+              <span className="text-base md:text-lg">{skill.desciption}</span>
             </div>
           ))}
         </div>
-        {/* language section */}
-        <div className="flex flex-col gap-3">
-          <h3>{translations.resume.language.title}</h3>
+
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {translations.resume.language.title}
+          </h1>
           {translations.resume.language.information.map((lang) => (
-            <div key={lang.id} className="flex flex-col gap-1 pt-3">
-              <h4>{lang.title}</h4>
-              <p>{lang.desciption}</p>
+            <div
+              key={lang.id}
+              className="flex flex-col pt-4 gap-2 print:page-break"
+            >
+              <h1 className="text-lg md:text-xl font-bold">{lang.title}</h1>
+              <span className="text-base md:text-lg">{lang.desciption}</span>
             </div>
           ))}
         </div>
       </div>
-      <ScrollToTopButton />
-    </Wrapper>
-  )
+    </main>
+  );
 }

@@ -1,7 +1,7 @@
 import resume from "./obj_resume.json";
 
-const pt = {
+const es = {
   resume,
 };
 
-export default pt;
+export default es;
