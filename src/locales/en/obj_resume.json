@@ -6,11 +6,12 @@
     "mail": "Send email",
     "bio": "Copy bio",
     "pdf_click": "Download PDF",
-    "pdf_loading": "Loading..."
+    "pdf_loading": "Loading...",
+    "pdf_success": "PDF downloaded successfully"
   },
   "about": {
     "title": "About",
-    "description": "My software development journey began in 2008, during my technical education. In 2010, I completed the course and started my first programming internship — since then, I’ve been continuously growing in the field. After being hired as a software engineer still in 2010, I worked on more than 50 projects, focusing on PHP, JavaScript, and various other programming languages and libraries. Driven by my passion for technology and to keep improving, I earned a degree in IT Management, a specialization in Strategic IT Planning, and began a Master’s in Computer Science."
+    "description": "My path in software development began in 2008, during my technical course. In 2010, I completed the program and started my first programming internship — I have been working and growing in the field ever since. Hired as a software engineer that same year, I have worked on more than 90 projects, using languages such as PHP, JavaScript, Ruby, Python and other languages and libraries. I am currently a senior software engineer at <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. <br /> Driven by a passion for technology and a commitment to continuous improvement, I completed a degree in Information Technology Management, a postgraduate specialisation in Strategic IT Planning, and began a Master's in Computer Science, which I did not complete for personal reasons. In light of advances in technology and artificial intelligence, I began a postgraduate degree in AI and automation, to stay aligned with market demands and continue growing in my career."
   },
   "experience": {
     "title": "Experience",
@@ -21,15 +22,15 @@
         "final_date": "Present",
         "title": "Senior Software Engineer & Tech Lead at nav9 ➚",
         "link": "https://nav9.tech",
-        "description": "Responsible for developing Frontend projects for the company’s clients, also working as a consultant and tech lead. I apply best practices and clean code for market-leading Brazilian companies such as Shoppings Iguatemi, UFC, EducaCross, Grupo SEB, Rede AZ, among others. I use top industry technologies, focusing especially on React, Next, and TypeScript, to bring innovation and quality to the projects I’m involved in."
+        "description": "Responsible for developing frontend projects for the company's clients, also acting as consultant and technical lead. I apply best practices and clean code for leading companies in the Brazilian market, such as Shoppings Iguatemi, UFC, EducaCross, Grupo SEB, and Rede AZ, among others. I use React, Next, and TypeScript as my main technologies to deliver innovation and quality to the projects I work on."
       },
       {
         "id": 2,
         "initial_date": "2020",
         "final_date": "2021",
-        "title": "CAPES Master's Scholarship at UFPel ➚",
+        "title": "CAPES Master's Scholar at UFPel ➚",
         "link": "https://portal.ufpel.edu.br/en/",
-        "description": "I was responsible for expanding the simulator developed and used by the research group for modeling and simulation of Wireless Sensor Networks (WSNs). Using real data collected by traps designed by the group, we simulated their behavior in natural environments, allowing us to obtain information on battery life, data collection capacity, communication range between traps, and their coverage. The Eboracum simulator was mainly developed and extended in Java. We published two scientific articles on this work: one focused on <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>performance and energy consumption</a></u></b>, and another on <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>simulation and modeling of a WSN</a></u></b>."
+        "description": "Responsible for extending the simulator developed and used by the research group for modelling and simulation of Wireless Sensor Networks (WSNs). Using real data collected by traps designed by the group, we simulated their behaviour in natural environments, obtaining information on battery life, data collection capacity, communication range between traps, and coverage. The Eboracum simulator was developed and extended mainly in Java. This work led to two scientific papers: one on <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>performance and energy consumption</a></u></b> and another on <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>WSN simulation and modelling</a></u></b>."
       },
       {
         "id": 3,
@@ -37,7 +38,7 @@
         "final_date": "2020",
         "title": "Founder & CTO at Alpago ➚",
         "link": "https://wp.ufpel.edu.br/conectar/?s=alpago",
-        "description": "ALPAGO was created to support the organization and communication of the sheep farming production chain, addressing two historic problems still affecting the sector. In 2016, the startup was incubated at Conectar, and in 2017, it graduated at the <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b> event, standing out for its relevance. The sustainability of sheep farming depends on systemic coordination actions across the entire chain.\nI was responsible for system development, which included: requirements gathering, feasibility assessment, documentation, design, development, methodology selection, and testing. I also interacted with users and partners to get feedback on the system, continuously generating more value for the community.\nThe main technologies used were: PHP with CodeIgniter framework, HTML5, CSS3 with Bootstrap, JavaScript and MySQL."
+        "description": "ALPAGO was created to support the organisation and communication of the sheep farming production chain, addressing two long-standing problems in the sector. In 2016, the startup was incubated at Conectar and, in 2017, graduated from the <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b> programme, standing out for its relevance. The sustainability of sheep farming depends on actions that systemically coordinate every link in the chain.\nI was responsible for system development, including requirements gathering, feasibility assessment, documentation, design, development, methodology selection, and testing. I also engaged with users and partners to gather feedback and deliver ongoing value to the community.\nMain technologies: PHP with CodeIgniter, HTML5, CSS3 with Bootstrap, JavaScript, and MySQL."
       },
       {
         "id": 4,
@@ -45,7 +46,7 @@
         "final_date": "2015",
         "title": "Software Engineer at ZapShop Informática ➚",
         "link": "https://zapshop.com.br/sobre/",
-        "description": "I was responsible for handling client requests in development, analyzing proposed systems, creating documentation, and developing customized solutions. I also provided client training, trained new team members, and performed system maintenance and testing.\nMain technologies used: Visual Basic, PHP with CodeIgniter, Laravel and CakePHP frameworks, HTML5, CSS3 with Bootstrap and Material‑UI, JavaScript and MySQL."
+        "description": "Responsible for client support in the development area: analysis of proposed systems, documentation, and development of custom solutions. I also delivered training for clients and new team members, and carried out testing and system maintenance.\nMain technologies: Visual Basic, PHP with CodeIgniter, Laravel and CakePHP, HTML5, CSS3 with Bootstrap and Material-UI, JavaScript, and MySQL."
       }
     ]
   },
@@ -54,33 +55,41 @@
     "information": [
       {
         "id": 1,
+        "initial_date": "2025",
+        "final_date": "In progress",
+        "title": "Postgraduate in Artificial Intelligence and Automation at RocketSeat ➚",
+        "link": "https://rocketseat.com.br/",
+        "region": "Remote, Brazil"
+      },
+      {
+        "id": 2,
         "initial_date": "2019",
         "final_date": "Incomplete",
-        "title": "Master’s in Computer Science at UFPel ➚",
+        "title": "Master's in Computer Science at UFPel ➚",
         "link": "https://portal.ufpel.edu.br/en/",
         "region": "Pelotas, Brazil"
       },
       {
-        "id": 2,
+        "id": 3,
         "initial_date": "2014",
         "final_date": "2015",
-        "title": "Specialization in IT Management at IDEAU ➚",
+        "title": "Postgraduate Specialisation in IT Management at IDEAU ➚",
         "link": "https://www.bage.ideau.com.br/",
         "region": "Bagé, Brazil"
       },
       {
-        "id": 3,
+        "id": 4,
         "initial_date": "2011",
         "final_date": "2013",
-        "title": "Bachelor’s Degree in IT Management at URCAMP ➚",
+        "title": "Bachelor's Degree in IT Management at URCAMP ➚",
         "link": "https://urcamp.edu.br/",
         "region": "Caçapava do Sul, Brazil"
       },
       {
-        "id": 4,
+        "id": 5,
         "initial_date": "2008",
         "final_date": "2010",
-        "title": "Technical Course in Computer Science at URCAMP ➚",
+        "title": "Technical Course in Computing at URCAMP ➚",
         "link": "https://urcamp.edu.br/",
         "region": "Dom Pedrito, Brazil"
       }
@@ -93,30 +102,30 @@
         "id": 1,
         "initial_date": "2022",
         "final_date": "2022",
-        "title": "CS50’s Web Programming with JavaScript",
+        "title": "CS50's Web Programming with JavaScript",
         "region": "Harvard University"
       },
       {
         "id": 2,
         "initial_date": "2021",
         "final_date": "2021",
-        "title": "BootCamp Ignite",
-        "region": "RocketSeat"
+        "title": "Bootcamp Ignite",
+        "region": "Rocketseat"
       }
     ]
   },
   "skills": {
-    "title": "Skills",
+    "title": "Technical skills",
     "information": [
       {
         "id": 1,
         "title": "JavaScript",
-        "desciption": "Over the past three years, I’ve focused on this programming language. I use it in frontend development with React, mainly using the Next.js framework. I’ve also worked on projects with other frameworks like Angular and Vue. Additionally, I’m using it to improve my test automation skills with Jest."
+        "desciption": "Over the past five years, I have focused on this programming language. I use it for frontend development with React, mainly with Next.js — and Vite often joins the party — and have worked on projects with Angular and Vue. When it's time for the backend, Node.js and Express are my go-to duo. I also use it to improve test automation with Jest."
       },
       {
         "id": 2,
         "title": "PHP",
-        "desciption": "I have extensive experience with my 'native' programming language, with over 10 years of practice. Throughout my career, I’ve used and continue to use this language in various applications. In development, I built APIs and large systems using CodeIgniter and Laravel frameworks. I’ve also worked with relational databases like MySQL and non-relational ones like MongoDB."
+        "desciption": "I have extensive experience in my \"first\" programming language, with over ten years of practice. Throughout my career, I have used and continue to use PHP in a variety of applications: APIs and large-scale systems with CodeIgniter and Laravel, as well as relational (MySQL) and non-relational (MongoDB) databases."
       }
     ]
   },
@@ -126,17 +135,17 @@
       {
         "id": 1,
         "title": "Portuguese",
-        "desciption": "Understands well, speaks well, reads well, writes well"
+        "desciption": "Understanding: fluent · Speaking: fluent · Reading: fluent · Writing: fluent"
       },
       {
         "id": 2,
         "title": "English",
-        "desciption": "Understands well, speaks moderately, reads well, writes moderately"
+        "desciption": "Understanding: fluent · Speaking: intermediate · Reading: fluent · Writing: intermediate"
       },
       {
         "id": 3,
         "title": "Spanish",
-        "desciption": "Understands moderately, speaks moderately, reads moderately, writes moderately"
+        "desciption": "Understanding: intermediate · Speaking: intermediate · Reading: intermediate · Writing: intermediate"
       }
     ]
   }

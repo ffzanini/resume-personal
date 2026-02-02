@@ -7,14 +7,10 @@ import { useLayoutEffect, useState } from "react";
 
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-import { LuMail, LuCopy, LuSun, LuMoonStar } from "react-icons/lu";
+import { LuMail, LuCopy, LuSun, LuMoonStar, LuDownload } from "react-icons/lu";
 
 import { useTranslation } from "@/context";
-import {
-  LanguageSelect,
-  ResumeDownloadButton,
-  RichTextViewer,
-} from "@/components";
+import { LanguageSelect, RichTextViewer } from "@/components";
 import { socialsResume } from "@/constants/socials";
 import { fontRyanaLovely } from "./fonts";
 import { cn } from "@/libs/cn";
@@ -26,7 +22,7 @@ export default function Resume() {
   const [checkTheme, setCheckTheme] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
 
-  const text = translations.resume.about.description;
+  const textResumeAbout = translations.resume.about.description;
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -34,7 +30,7 @@ export default function Resume() {
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(text)
+      .writeText(textResumeAbout)
       .then(() => {
         toast.success(translations.resume.toast);
       })
@@ -54,7 +50,7 @@ export default function Resume() {
         body: JSON.stringify({
           url: `${window.location.origin}${window.location.pathname}?lang=${location}`,
           language: location,
-          theme: theme,
+          theme: checkTheme === "dark" ? "dark" : "light",
         }),
       });
 
@@ -70,9 +66,14 @@ export default function Resume() {
       document.body.appendChild(a);
       a.click();
       a.remove();
+      window.URL.revokeObjectURL(url);
+      toast.success(
+        (translations.resume.icos as Record<string, string>).pdf_success ??
+          "PDF downloaded",
+      );
     } catch (error) {
       console.error(error);
-      alert("Failed to generate PDF");
+      toast.error("Failed to generate PDF");
     } finally {
       setLoading(false);
     }
@@ -90,7 +91,7 @@ export default function Resume() {
           <div className="flex items-center">
             <span
               className={cn(
-                `${fontRyanaLovely.className} opacity-100 transition-opacity duration-200 text-3xl`
+                `${fontRyanaLovely.className} opacity-100 transition-opacity duration-200 text-3xl`,
               )}
             >
               2fZ
@@ -127,16 +128,9 @@ export default function Resume() {
             <span className="text-base md:text-lg mb-2">
               {translations.resume.description}
             </span>
-            <button
-              onClick={handleGeneratePDF}
-              disabled={loading}
-              className="no-print cursor-pointer"
-            >
-              <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80"></div>
-            </button>
             <Link
               href="https://www.ffzanini.dev/"
-              className="w-32 flex flex-row justify-center items-center bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-white font-semibold py-1 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl shadow-primary-600/25 group"
+              className="w-32 flex flex-row justify-center items-center bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-white font-semibold py-1 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl shadow-primary-600/25 group"
             >
               ffzanini.dev
             </Link>
@@ -150,7 +144,20 @@ export default function Resume() {
               <p>{translations.resume.icos.mail}</p>
             </div>
           </motion.a>
-          {location === "pt" && <ResumeDownloadButton language={location} />}
+          <button
+            onClick={handleGeneratePDF}
+            disabled={loading}
+            className="no-print cursor-pointer"
+          >
+            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
+              <LuDownload className="h-4 w-4" />
+              <p>
+                {loading
+                  ? translations.resume.icos.pdf_loading
+                  : translations.resume.icos.pdf_click}
+              </p>
+            </div>
+          </button>
 
           <button onClick={copyToClipboard} className="no-print cursor-pointer">
             <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
@@ -164,7 +171,7 @@ export default function Resume() {
           <h1 className="text-lg md:text-2xl font-bold">
             {translations.resume.about.title}
           </h1>
-          <span className="text-base md:text-lg mb-2">{text}</span>
+          <RichTextViewer content={textResumeAbout} />
         </div>
 
         <div className="flex flex-col gap-2 my-4">

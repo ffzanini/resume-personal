@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 export const runtime = "nodejs";
 
+// Tempo máximo para a função (geração de PDF pode demorar na Vercel)
+export const maxDuration = 60;
+
+// Otimização para serverless: desativa WebGL (não necessário para PDF)
+chromium.setGraphicsMode = false;
+
 export async function POST(req: NextRequest) {
+  let browser = null;
+
   try {
     const { url, language, theme } = await req.json();
 
@@ -14,22 +23,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    const executablePath = await chromium.executablePath();
+
+    browser = await puppeteer.launch({
+      args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+      defaultViewport: {
+        width: 1920,
+        height: 1080,
+        deviceScaleFactor: 1,
+      },
+      executablePath,
+      headless: "shell",
     });
 
     const page = await browser.newPage();
 
-    // Define idioma antes de carregar a página
+    // Garante que a URL tenha o parâmetro lang correto (o contexto lê o idioma da URL)
+    const urlWithLang = new URL(url);
+    urlWithLang.searchParams.set("lang", language);
+
+    // Define idioma antes de carregar a página (fallback para apps que leem localStorage)
     await page.goto("about:blank");
-    await page.evaluateOnNewDocument((lang) => {
+    await page.evaluateOnNewDocument((lang: string) => {
       localStorage.setItem("language", lang);
       document.documentElement.setAttribute("lang", lang);
     }, language);
 
-    // Navega para a URL
-    await page.goto(url, { waitUntil: "networkidle2" });
+    // Navega para a URL com o idioma correto na query string
+    await page.goto(urlWithLang.toString(), { waitUntil: "networkidle2" });
 
     // Aguarda o idioma estar aplicado de fato
     await page.waitForSelector("body[data-language-ready='true']", {
@@ -37,16 +58,16 @@ export async function POST(req: NextRequest) {
     });
 
     // Aplica o tema
-    await page.evaluate((theme) => {
+    await page.evaluate((themeValue: string) => {
       const html = document.documentElement;
       const body = document.body;
 
       html.classList.remove("dark");
-      html.style.backgroundColor = theme === "dark" ? "#161618" : "#faf9f6";
-      body.style.backgroundColor = theme === "dark" ? "#161618" : "#faf9f6";
-      body.style.color = theme === "dark" ? "#faf9f6" : "#161618";
+      html.style.backgroundColor = themeValue === "dark" ? "#161618" : "#faf9f6";
+      body.style.backgroundColor = themeValue === "dark" ? "#161618" : "#faf9f6";
+      body.style.color = themeValue === "dark" ? "#faf9f6" : "#161618";
 
-      if (theme === "dark") {
+      if (themeValue === "dark") {
         html.classList.add("dark");
       }
     }, theme);
@@ -85,9 +106,7 @@ export async function POST(req: NextRequest) {
       printBackground: true,
     });
 
-    await browser.close();
-
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(Buffer.from(pdfBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
@@ -100,5 +119,9 @@ export async function POST(req: NextRequest) {
       { message: "Erro interno ao gerar o PDF." },
       { status: 500 }
     );
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
   }
 }

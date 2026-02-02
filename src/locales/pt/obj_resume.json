@@ -6,11 +6,12 @@
     "mail": "Enviar e-mail",
     "bio": "Copiar bio",
     "pdf_click": "Baixar PDF",
-    "pdf_loading": "Carregando..."
+    "pdf_loading": "Carregando...",
+    "pdf_success": "PDF baixado com sucesso"
   },
   "about": {
     "title": "Sobre",
-    "description": "Minha trajetória no desenvolvimento de software começou em 2008, durante o ensino técnico. Em 2010, concluí o curso e iniciei meu primeiro estágio em programação — desde então, sigo evoluindo continuamente na área. Após ser efetivado como engenheiro de software ainda no ano de 2010, atuei em mais de 50 projetos, com foco em PHP, JavaScript e diversas outras linguagens de programação e bibliotecas. Movido pela paixão por tecnologia e e pra estar sempre me aprimorando, conquistei um diploma em Gestão da Tecnologia da Informação, uma especialização em Planejamento Estratégico em TI e iniciei um Mestrado em Ciência da Computação."
+    "description": "Minha trajetória em desenvolvimento de software começou em 2008, durante o curso técnico. Em 2010, concluí a formação e iniciei meu primeiro estágio em programação — desde então, sigo atuando e evoluindo na área. Efetivado como engenheiro de software ainda em 2010, já atuei em mais de 90 projetos, utilizando linguagens como PHP, JavaScript, Ruby, Python dentre outras linguagens e bibliotecas. Atualmente, atuo como engenheiro de software sênior na <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. </br> Movido pela paixão por tecnologia e pelo desejo de me aprimorar continuamente, concluí formação em Gestão da Tecnologia da Informação, especialização em Planejamento Estratégico em TI e iniciei o Mestrado em Ciência da Computação, que não cheguei a concluir por motivos pessoais. Diante do avanço da tecnologia e da inteligência artificial, passei a cursar uma pós-graduação em IA e automação, para me manter alinhado às demandas do mercado e seguir evoluindo na carreira."
   },
   "experience": {
     "title": "Experiência",
@@ -18,34 +19,34 @@
       {
         "id": 1,
         "initial_date": "2021",
-        "final_date": "O momento",
-        "title": "Engenheiro de Software Sênior & Tech Lead at nav9 ➚",
+        "final_date": "Atual",
+        "title": "Engenheiro de Software Sênior e Tech Lead na nav9 ➚",
         "link": "https://nav9.tech",
-        "description": "Tendo como responsabilidade desenvolver projetos Frontend para os clientes da empresa, atuando também como consultor e líder técnico, aplico boas práticas e código limpo para empresas de referência no mercado nacional, como Shoppings Iguatemi, UFC, EducaCross, Grupo SEB, Rede AZ, entre outros. Utilizo as principais tecnologias do mercado, com foco especialmente em React, Next e TypeScript, para trazer inovação e qualidade aos projetos em que estou envolvido."
+        "description": "Responsável por desenvolver projetos frontend para os clientes da empresa, atuando também como consultor e líder técnico. Aplico boas práticas e código limpo para empresas de referência no mercado nacional, como Shoppings Iguatemi, UFC, EducaCross, Grupo SEB e Rede AZ, entre outras. Utilizo React, Next e TypeScript como principais tecnologias para entregar inovação e qualidade aos projetos em que atuo."
       },
       {
         "id": 2,
         "initial_date": "2020",
         "final_date": "2021",
-        "title": "Bolsista Mestrado CAPES at UFPel ➚",
+        "title": "Bolsista de Mestrado CAPES na UFPel ➚",
         "link": "https://portal.ufpel.edu.br/en/",
-        "description": "Fui responsável por expandir o simulador desenvolvido e utilizado pelo grupo de pesquisa para modelagem e simulação de Redes de Sensores Sem Fio (RSSF). Usando dados reais coletados por armadilhas projetadas pelo grupo, simulamos seu comportamento no ambiente natural, permitindo-nos obter informações sobre a duração da bateria, capacidade de coleta, raio de comunicação entre as armadilhas e seu alcance. O simulador Eboracum foi desenvolvido e estendido principalmente em Java. Publicamos dois artigos científicos sobre esse trabalho: um focado em <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>desempenho e consumo de energia</a></u></b>, e outro na <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>simulação e modelagem de uma RSSF</a></u></b>."
+        "description": "Responsável por expandir o simulador desenvolvido e utilizado pelo grupo de pesquisa para modelagem e simulação de Redes de Sensores Sem Fio (RSSF). Com base em dados reais coletados por armadilhas projetadas pelo grupo, simulamos o comportamento no ambiente natural, obtendo informações sobre duração da bateria, capacidade de coleta, raio de comunicação entre as armadilhas e alcance. O simulador Eboracum foi desenvolvido e estendido principalmente em Java. Desse trabalho resultaram dois artigos científicos: um sobre <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>desempenho e consumo de energia</a></u></b> e outro sobre <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>simulação e modelagem de RSSF</a></u></b>."
       },
       {
         "id": 3,
         "initial_date": "2016",
         "final_date": "2020",
-        "title": "Founder & CTO at Alpago ➚",
+        "title": "Fundador e CTO na Alpago ➚",
         "link": "https://wp.ufpel.edu.br/conectar/?s=alpago",
-        "description": "A ALPAGO foi criada para auxiliar na organização e comunicação da cadeia produtiva da ovinocultura, abordando dois problemas históricos que ainda afetam o setor. Em 2016, a startup foi incubada na Conectar, e em 2017, foi graduada no evento <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b>, destacando-se por sua relevância. A sustentabilidade da ovinocultura depende de ações voltadas para a coordenação sistêmica de todos os elos da cadeia.</br> Fui responsável pelo desenvolvimento do sistema, que incluiu: levantamento de requisitos, avaliação de viabilidade, documentação, design, desenvolvimento, escolha de metodologias e testes. Além disso, interagi com usuários e parceiros para obter feedback sobre o sistema, gerando continuamente mais valor para a comunidade.</br> As principais tecnologias utilizadas foram: PHP com o framework CodeIgniter, HTML5, CSS3 com Bootstrap, JavaScript e MySQL."
+        "description": "A ALPAGO foi criada para auxiliar na organização e na comunicação da cadeia produtiva da ovinocultura, enfrentando dois problemas históricos do setor. Em 2016, a startup foi incubada na Conectar e, em 2017, graduou-se no programa <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b>, destacando-se pela relevância. A sustentabilidade da ovinocultura depende de ações que coordenem de forma sistêmica todos os elos da cadeia.</br> Fui responsável pelo desenvolvimento do sistema, incluindo levantamento de requisitos, avaliação de viabilidade, documentação, design, desenvolvimento, definição de metodologias e testes. Também mantive contato com usuários e parceiros para obter feedback e gerar valor contínuo para a comunidade.</br> Principais tecnologias: PHP com CodeIgniter, HTML5, CSS3 com Bootstrap, JavaScript e MySQL."
       },
       {
         "id": 4,
         "initial_date": "2010",
         "final_date": "2015",
-        "title": "Engenheiro de Software at ZapShop Informática ➚",
+        "title": "Engenheiro de Software na ZapShop Informática ➚",
         "link": "https://zapshop.com.br/sobre/",
-        "description": "Fui responsável pelo atendimento a clientes na área de desenvolvimento, analisava os sistemas propostos, criava documentação, e desenvolvia soluções personalizadas. Além disso, fornecia treinamento aos clientes, treinava novos colaboradores, e realizava testes e manutenção dos sistemas.</br>Principais tecnologias utilizadas: Visual Basic, PHP com os frameworks CodeIgniter, Laravel e CakePHP, HTML5, CSS3 com Bootstrap e Material-UI, JavaScript e MySQL."
+        "description": "Responsável pelo atendimento a clientes na área de desenvolvimento: análise dos sistemas propostos, elaboração de documentação e desenvolvimento de soluções sob medida. Também conduzi treinamentos para clientes e novos colaboradores, além de realizar testes e manutenção dos sistemas.</br>Principais tecnologias: Visual Basic, PHP com CodeIgniter, Laravel e CakePHP, HTML5, CSS3 com Bootstrap e Material-UI, JavaScript e MySQL."
       }
     ]
   },
@@ -54,33 +55,41 @@
     "information": [
       {
         "id": 1,
+        "initial_date": "2025",
+        "final_date": "Em progresso",
+        "title": "Pós-graduação em Inteligência Artificial e Automação na RocketSeat ➚",
+        "link": "https://rocketseat.com.br/",
+        "region": "Remoto, Brasil"
+      },
+      {
+        "id": 2,
         "initial_date": "2019",
         "final_date": "Incompleto",
-        "title": "Mestrado em Ciência da Computação at UFPel ➚",
+        "title": "Mestrado em Ciência da Computação na UFPel ➚",
         "link": "https://portal.ufpel.edu.br/en/",
         "region": "Pelotas, Brasil"
       },
       {
-        "id": 2,
+        "id": 3,
         "initial_date": "2014",
         "final_date": "2015",
-        "title": "Especialização em Gestão de TI at IDEAU ➚",
+        "title": "Especialização em Gestão de TI na IDEAU ➚",
         "link": "https://www.bage.ideau.com.br/",
         "region": "Bagé, Brasil"
       },
       {
-        "id": 3,
+        "id": 4,
         "initial_date": "2011",
         "final_date": "2013",
-        "title": "Graduação em Tecnologia em Gestão da TI at URCAMP ➚",
+        "title": "Graduação em Tecnologia em Gestão da TI na URCAMP ➚",
         "link": "https://urcamp.edu.br/",
         "region": "Caçapava do Sul, Brasil"
       },
       {
-        "id": 4,
+        "id": 5,
         "initial_date": "2008",
         "final_date": "2010",
-        "title": "Técnico em Informática at URCAMP ➚",
+        "title": "Técnico em Informática na URCAMP ➚",
         "link": "https://urcamp.edu.br/",
         "region": "Dom Pedrito, Brasil"
       }
@@ -100,23 +109,23 @@
         "id": 2,
         "initial_date": "2021",
         "final_date": "2021",
-        "title": "BootCamp Ignite",
-        "region": "RocketSeat"
+        "title": "Bootcamp Ignite",
+        "region": "Rocketseat"
       }
     ]
   },
   "skills": {
-    "title": "Proficiências",
+    "title": "Competências técnicas",
     "information": [
       {
         "id": 1,
         "title": "JavaScript",
-        "desciption": "Nos últimos 3 anos, foquei nesta linguagem de programação. Utilizo-a no desenvolvimento front-end com React, principalmente com o framework Next.js. Também participei de projetos com outros frameworks, como Angular e Vue. Além disso, estou a utilizando para aprimorar minhas habilidades em automação de testes com Jest."
+        "desciption": "Nos últimos cinco anos, me dediquei a esta linguagem de programação. Uso-a no desenvolvimento front-end com React, sobretudo com Next.js e com Vite, e participei de projetos com Angular e Vue. No backend, trabalho com Node.js e Express. Também a utilizo para aprimorar automação de testes com Jest."
       },
       {
         "id": 2,
         "title": "PHP",
-        "desciption": "Tenho ampla experiência com minha linguagem de programação 'nativa', acumulando mais de 10 anos de prática. Ao longo da minha carreira, utilizei e ainda utilizo essa linguagem em diversas aplicações. No desenvolvimento, construí APIs e grandes sistemas usando os frameworks CodeIgniter e Laravel. Também trabalhei com bancos de dados relacionais como MySQL e não relacionais como MongoDB."
+        "desciption": "Tenho ampla experiência na minha linguagem de programação \"de origem\", com mais de dez anos de prática. Ao longo da carreira, utilizei e ainda utilizo PHP em diversas aplicações: APIs e sistemas de grande porte com os frameworks CodeIgniter e Laravel, além de bancos de dados relacionais (MySQL) e não relacionais (MongoDB)."
       }
     ]
   },
@@ -126,17 +135,17 @@
       {
         "id": 1,
         "title": "Português",
-        "desciption": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem"
+        "desciption": "Compreensão: fluente · Fala: fluente · Leitura: fluente · Escrita: fluente"
       },
       {
         "id": 2,
         "title": "Inglês",
-        "desciption": "Compreende Bem, Fala Razoavelmente, Lê Bem, Escreve Razoavelmente"
+        "desciption": "Compreensão: fluente · Fala: intermediário · Leitura: fluente · Escrita: intermediário"
       },
       {
         "id": 3,
         "title": "Espanhol",
-        "desciption": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente, Escreve Razoavelmente"
+        "desciption": "Compreensão: intermediário · Fala: intermediário · Leitura: intermediário · Escrita: intermediário"
       }
     ]
   }
