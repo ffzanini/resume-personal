@@ -122,6 +122,35 @@ export async function POST(req: NextRequest) {
       `,
     });
 
+    // Substitui ➚ (U+279A) por SVG inline para renderizar no PDF (fontes do servidor não têm o glifo).
+    await page.evaluate(() => {
+      const ARROW_SVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      const walk = (node: Node) => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent?.includes("\u279A")) {
+          const parent = node.parentNode;
+          if (!parent) return;
+          const parts = node.textContent.split("\u279A");
+          const fragment = document.createDocumentFragment();
+          parts.forEach((text, i) => {
+            fragment.appendChild(document.createTextNode(text));
+            if (i < parts.length - 1) {
+              const span = document.createElement("span");
+              span.innerHTML = ARROW_SVG;
+              fragment.appendChild(span);
+            }
+          });
+          parent.replaceChild(fragment, node);
+          return;
+        }
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          const childList = Array.from(node.childNodes);
+          childList.forEach(walk);
+        }
+      };
+      walk(document.body);
+    });
+
     const pdfBuffer = await page.pdf({
       format: "A3",
       printBackground: true,
