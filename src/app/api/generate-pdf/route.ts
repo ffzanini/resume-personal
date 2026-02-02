@@ -8,6 +8,18 @@ export const maxDuration = 60;
 
 chromium.setGraphicsMode = false;
 
+// URL completa do pack Chromium v143 (x64). Use esta no Vercel se CHROMIUM_REMOTE_EXEC_PATH não estiver definida ou estiver truncada.
+const CHROMIUM_PACK_URL =
+  "https://github.com/Sparticuz/chromium/releases/download/v143.0.4/chromium-v143.0.4-pack.x64.tar";
+
+function errorResponse(
+  code: string,
+  message: string,
+  status: number = 500,
+) {
+  return NextResponse.json({ code, message }, { status });
+}
+
 export async function POST(req: NextRequest) {
   let browser = null;
 
@@ -16,12 +28,25 @@ export async function POST(req: NextRequest) {
 
     if (!url || !language || !theme) {
       return NextResponse.json(
-        { message: "URL, language and theme are required" },
+        { code: "BAD_REQUEST", message: "URL, language and theme are required" },
         { status: 400 },
       );
     }
 
-    const remotePath = process.env.CHROMIUM_REMOTE_EXEC_PATH;
+    // Em produção (Vercel etc.) o diretório node_modules/@sparticuz/chromium/bin não existe no deploy.
+    // Sempre usar o pack remoto (URL) em produção; localmente usar o bin do pacote.
+    const isProduction = process.env.NODE_ENV === "production";
+    const envPath = process.env.CHROMIUM_REMOTE_EXEC_PATH?.trim();
+    const useRemote =
+      isProduction ||
+      (process.env.VERCEL === "1" || process.env.VERCEL === "true");
+    const remotePath =
+      envPath && envPath.length > 60 && envPath.endsWith(".tar")
+        ? envPath
+        : useRemote
+          ? CHROMIUM_PACK_URL
+          : undefined;
+
     const executablePath = remotePath
       ? await chromium.executablePath(remotePath)
       : await chromium.executablePath();
@@ -110,11 +135,32 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Erro ao gerar PDF:", error);
-    return NextResponse.json(
-      { message: "Erro interno ao gerar o PDF." },
-      { status: 500 },
-    );
+    const err = error as Error;
+    console.error("Erro ao gerar PDF:", err);
+
+    const message = err?.message ?? "";
+    let code = "PDF_GENERATION_FAILED";
+    let userMessage = "Erro interno ao gerar o PDF. Verifique os logs da função no Vercel.";
+
+    if (
+      message.includes("timeout") ||
+      message.includes("Timeout") ||
+      message.includes("ETIMEDOUT")
+    ) {
+      code = "CHROMIUM_DOWNLOAD_TIMEOUT";
+      userMessage =
+        "Download do Chromium demorou demais. Tente novamente ou hospede o .tar no Vercel Blob.";
+    } else if (
+      message.includes("does not exist") ||
+      message.includes("ENOENT") ||
+      message.includes("404")
+    ) {
+      code = "CHROMIUM_PATH_INVALID";
+      userMessage =
+        "URL do Chromium inválida. Use a URL completa do pack .tar nas variáveis de ambiente.";
+    }
+
+    return errorResponse(code, userMessage, 500);
   } finally {
     if (browser) {
       await browser.close();

@@ -55,7 +55,14 @@ export default function Resume() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to generate PDF");
+        let errorMessage = "Failed to generate PDF";
+        try {
+          const data = await response.json();
+          if (data?.message) errorMessage = data.message;
+        } catch {
+          // response não é JSON
+        }
+        throw new Error(errorMessage);
       }
 
       const blob = await response.blob();
@@ -73,7 +80,9 @@ export default function Resume() {
       );
     } catch (error) {
       console.error(error);
-      toast.error("Failed to generate PDF");
+      const message =
+        error instanceof Error ? error.message : "Failed to generate PDF";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
