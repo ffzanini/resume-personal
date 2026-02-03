@@ -8,15 +8,10 @@ export const maxDuration = 60;
 
 chromium.setGraphicsMode = false;
 
-// URL completa do pack Chromium v143 (x64). Use esta no Vercel se CHROMIUM_REMOTE_EXEC_PATH não estiver definida ou estiver truncada.
 const CHROMIUM_PACK_URL =
   "https://github.com/Sparticuz/chromium/releases/download/v143.0.4/chromium-v143.0.4-pack.x64.tar";
 
-function errorResponse(
-  code: string,
-  message: string,
-  status: number = 500,
-) {
+function errorResponse(code: string, message: string, status: number = 500) {
   return NextResponse.json({ code, message }, { status });
 }
 
@@ -28,18 +23,20 @@ export async function POST(req: NextRequest) {
 
     if (!url || !language || !theme) {
       return NextResponse.json(
-        { code: "BAD_REQUEST", message: "URL, language and theme are required" },
+        {
+          code: "BAD_REQUEST",
+          message: "URL, language and theme are required",
+        },
         { status: 400 },
       );
     }
 
-    // Em produção (Vercel etc.) o diretório node_modules/@sparticuz/chromium/bin não existe no deploy.
-    // Sempre usar o pack remoto (URL) em produção; localmente usar o bin do pacote.
     const isProduction = process.env.NODE_ENV === "production";
     const envPath = process.env.CHROMIUM_REMOTE_EXEC_PATH?.trim();
     const useRemote =
       isProduction ||
-      (process.env.VERCEL === "1" || process.env.VERCEL === "true");
+      process.env.VERCEL === "1" ||
+      process.env.VERCEL === "true";
     const remotePath =
       envPath && envPath.length > 60 && envPath.endsWith(".tar")
         ? envPath
@@ -122,12 +119,14 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    // Substitui ➚ (U+279A) por SVG inline para renderizar no PDF (fontes do servidor não têm o glifo).
     await page.evaluate(() => {
       const ARROW_SVG =
         '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
       const walk = (node: Node) => {
-        if (node.nodeType === Node.TEXT_NODE && node.textContent?.includes("\u279A")) {
+        if (
+          node.nodeType === Node.TEXT_NODE &&
+          node.textContent?.includes("\u279A")
+        ) {
           const parent = node.parentNode;
           if (!parent) return;
           const parts = node.textContent.split("\u279A");
@@ -169,7 +168,8 @@ export async function POST(req: NextRequest) {
 
     const message = err?.message ?? "";
     let code = "PDF_GENERATION_FAILED";
-    let userMessage = "Erro interno ao gerar o PDF. Verifique os logs da função no Vercel.";
+    let userMessage =
+      "Erro interno ao gerar o PDF. Verifique os logs da função no Vercel.";
 
     if (
       message.includes("timeout") ||
