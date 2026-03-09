@@ -61,16 +61,13 @@ export async function POST(req: NextRequest) {
 
     const page = await browser.newPage();
 
-    const urlWithLang = new URL(url);
-    urlWithLang.searchParams.set("lang", language);
-
     await page.goto("about:blank");
     await page.evaluateOnNewDocument((lang: string) => {
       localStorage.setItem("language", lang);
       document.documentElement.setAttribute("lang", lang);
     }, language);
 
-    await page.goto(urlWithLang.toString(), { waitUntil: "networkidle2" });
+    await page.goto(url, { waitUntil: "networkidle2" });
 
     await page.waitForSelector("body[data-language-ready='true']", {
       timeout: 8000,

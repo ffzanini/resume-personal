@@ -17,6 +17,20 @@
   --color-primary-800: #aa0743; /* light theme */
   --color-primary-900: #920940;
   --color-primary-950: #52001e;
+
+  --animate-navigation-loading: navigation-loading 1.2s ease-in-out infinite;
+
+  @keyframes navigation-loading {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(200%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 }
 
 :root {

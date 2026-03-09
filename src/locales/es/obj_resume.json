@@ -1,6 +1,6 @@
 {
   "name": "Felipe Frantz Zanini",
-  "description": "Ingeniero de Software Senior en Pelotas, Brasil",
+  "description": "Ingeniero de Software Senior y Arquitectura Frontend en Pelotas, Brasil",
   "toast": "Texto copiado al portapapeles",
   "icos": {
     "mail": "Enviar correo",
@@ -11,40 +11,53 @@
   },
   "about": {
     "title": "Sobre mí",
-    "description": "Mi trayectoria en el desarrollo de software comenzó en 2008, durante el curso técnico. En 2010, terminé la formación e inicié mi primera pasantía en programación — desde entonces, sigo trabajando y creciendo en el área. Contratado como ingeniero de software ese mismo año, he participado en más de 90 proyectos, utilizando lenguajes como PHP, JavaScript, Ruby, Python dentre otros lenguajes, frameworks y bibliotecas. Actualmente, soy ingeniero de software senior en <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. <br /> Impulsado por la pasión por la tecnología y por seguir mejorando, cursé Gestión de Tecnología de la Información, una especialización en Planificación Estratégica en TI e inicié la Maestría en Ciencias de la Computación, que no llegué a concluir por motivos personales. Ante el avance de la tecnología y la inteligencia artificial, empecé a cursar un posgrado en IA y automatización, para mantenerme alineado con las demandas del mercado y seguir evolucionando en mi carrera."
+    "description": "Mi trayectoria en el desarrollo de software comenzó en 2008, durante el curso técnico. En 2010, terminé la formación e inicié mi primera pasantía en programación — desde entonces, sigo trabajando y creciendo en el área. Contratado como ingeniero de software ese mismo año, he participado en más de 90 proyectos, utilizando lenguajes como PHP, JavaScript, Ruby, Python dentre otros lenguajes, frameworks y bibliotecas. Actualmente, soy Ingeniero de Software Senior y Arquitectura Frontend en <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. <br /> Impulsado por la pasión por la tecnología y por seguir mejorando, cursé Gestión de Tecnología de la Información, una especialización en Planificación Estratégica en TI e inicié la Maestría en Ciencias de la Computación, que no llegué a concluir por motivos personales. Ante el avance de la tecnología y la inteligencia artificial, empecé a cursar un posgrado en IA y automatización, para mantenerme alineado con las demandas del mercado y seguir evolucionando en mi carrera."
   },
   "experience": {
     "title": "Experiencia",
     "information": [
       {
         "id": 1,
+        "initial_date": "2025",
+        "final_date": "Atual",
+        "title": "Ingeniero de Software Senior & Arquiteto Frontend",
+        "company": "Iguatemi S.A ➚",
+        "link": "https://iguatemi.com.br/",
+        "description": "Responsable por estructurar, liderar y desarrollar proyectos frontend para la operación de todos los shoppings de la empresa. Concepción y entrega de soluciones de gestión para centros comerciales — sistemas de operación para comerciantes, control operacional para colaboradores y aplicativos — con arquitectura frontend escalable, código limpio y buenas prácticas de ingeniería. Utilizo React, Next y TypeScript para garantizar mantenibilidad, rendimiento y calidad en las herramientas."
+      },
+      {
+        "id": 2,
         "initial_date": "2021",
         "final_date": "Presente",
-        "title": "Ingeniero de Software Senior y Tech Lead en nav9 ➚",
+        "title": "Ingeniero de Software Senior & Tech Lead",
+        "company": "nav9 ➚",
         "link": "https://nav9.tech",
         "description": "Responsable de desarrollar proyectos frontend para los clientes de la empresa, actuando también como consultor y líder técnico. Aplico buenas prácticas y código limpio para empresas de referencia en el mercado brasileño, como Shoppings Iguatemi, UFC, EducaCross, Grupo SEB y Rede AZ, entre otras. Utilizo React, Next y TypeScript como principales tecnologías para aportar innovación y calidad a los proyectos en los que participo."
       },
       {
-        "id": 2,
+        "id": 3,
         "initial_date": "2020",
         "final_date": "2021",
-        "title": "Becario de Maestría CAPES en UFPel ➚",
+        "title": "Becario de Maestría CAPES",
+        "company": "Universidad Federal de Pelotas (UFPel) ➚",
         "link": "https://portal.ufpel.edu.br/en/",
         "description": "Responsable de ampliar el simulador desarrollado y utilizado por el grupo de investigación para modelado y simulación de Redes de Sensores Inalámbricos (WSN). A partir de datos reales recogidos por trampas diseñadas por el grupo, simulamos su comportamiento en entornos naturales, obteniendo información sobre duración de batería, capacidad de recolección, alcance de comunicación entre trampas y cobertura. El simulador Eboracum fue desarrollado y ampliado principalmente en Java. De este trabajo surgieron dos artículos científicos: uno sobre <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>rendimiento y consumo de energía</a></u></b> y otro sobre <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>simulación y modelado de WSN</a></u></b>."
       },
       {
-        "id": 3,
+        "id": 4,
         "initial_date": "2016",
         "final_date": "2020",
-        "title": "Fundador y CTO en Alpago ➚",
+        "title": "Fundador y CTO",
+        "company": "Alpago ➚",
         "link": "https://wp.ufpel.edu.br/conectar/?s=alpago",
         "description": "ALPAGO fue creada para apoyar la organización y la comunicación de la cadena productiva de la ovinocultura, abordando dos problemas históricos del sector. En 2016, la startup fue incubada en Conectar y, en 2017, se graduó en el programa <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b>, destacándose por su relevancia. La sostenibilidad de la ovinocultura depende de acciones que coordinen de forma sistémica todos los eslabones de la cadena.\nFui responsable del desarrollo del sistema, incluyendo levantamiento de requisitos, evaluación de viabilidad, documentación, diseño, desarrollo, definición de metodologías y pruebas. También mantuve contacto con usuarios y socios para obtener retroalimentación y generar valor continuo para la comunidad.\nPrincipales tecnologías: PHP con CodeIgniter, HTML5, CSS3 con Bootstrap, JavaScript y MySQL."
       },
       {
-        "id": 4,
+        "id": 5,
         "initial_date": "2010",
         "final_date": "2015",
-        "title": "Ingeniero de Software en ZapShop Informática ➚",
+        "title": "Ingeniero de Software",
+        "company": "ZapShop Informática ➚",
         "link": "https://zapshop.com.br/sobre/",
         "description": "Responsable de atender a clientes en el área de desarrollo: análisis de los sistemas propuestos, elaboración de documentación y desarrollo de soluciones a medida. También impartí capacitación a clientes y nuevos colaboradores, además de realizar pruebas y mantenimiento de los sistemas.\nPrincipales tecnologías: Visual Basic, PHP con CodeIgniter, Laravel y CakePHP, HTML5, CSS3 con Bootstrap y Material-UI, JavaScript y MySQL."
       }

@@ -1,123 +1,20 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-
-import { useLayoutEffect, useState } from "react";
-
-import toast from "react-hot-toast";
-import { motion } from "framer-motion";
-import { LuMail, LuCopy, LuSun, LuMoonStar, LuDownload } from "react-icons/lu";
 
 import { useTranslation } from "@/context";
-import { LanguageSelect, RichTextViewer } from "@/components";
+import { RichTextViewer, ResumeActions, ResumeNavbar } from "@/components";
 import { socialsResume } from "@/constants/socials";
-import { fontRyanaLovely } from "./fonts";
-import { cn } from "@/libs/cn";
 
 export default function Resume() {
-  const { translations, setLocation, location } = useTranslation();
-  const { theme, setTheme } = useTheme();
-
-  const [checkTheme, setCheckTheme] = useState<string | undefined>();
-  const [loading, setLoading] = useState(false);
-
+  const { translations, location } = useTranslation();
   const textResumeAbout = translations.resume.about.description;
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard
-      .writeText(textResumeAbout)
-      .then(() => {
-        toast.success(translations.resume.toast);
-      })
-      .catch(() => {
-        toast.error("Error");
-      });
-  };
-
-  const handleGeneratePDF = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/generate-pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url: `${window.location.origin}${window.location.pathname}?lang=${location}`,
-          language: location,
-          theme: checkTheme === "dark" ? "dark" : "light",
-        }),
-      });
-
-      if (!response.ok) {
-        let errorMessage = "Failed to generate PDF";
-        try {
-          const data = await response.json();
-          if (data?.message) errorMessage = data.message;
-        } catch {
-          // response não é JSON
-        }
-        throw new Error(errorMessage);
-      }
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-${location}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-      toast.success(
-        (translations.resume.icos as Record<string, string>).pdf_success ??
-          "PDF downloaded",
-      );
-    } catch (error) {
-      console.error(error);
-      const message =
-        error instanceof Error ? error.message : "Failed to generate PDF";
-      toast.error(message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useLayoutEffect(() => {
-    if (theme) {
-      setCheckTheme(theme);
-    }
-  }, [theme]);
 
   return (
     <main className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-28 xl:border-x border-dark-theme/20 dark:border-white-theme/20 ">
       <div className="flex flex-col page-break-before:always">
-        <div className="relative flex flex-row justify-between space-y-4 no-print">
-          <div className="flex items-center">
-            <span
-              className={cn(
-                `${fontRyanaLovely.className} opacity-100 transition-opacity duration-200 text-3xl`,
-              )}
-            >
-              2fZ
-            </span>
-          </div>
-          <div className="flex items-center space-x-6">
-            <div className="relative">
-              <LanguageSelect selected={location} onChange={setLocation} />
-            </div>
-            <motion.button onClick={toggleTheme} className="cursor-pointer">
-              {checkTheme === "dark" ? (
-                <LuSun className="h-5 w-5 hover:rotate-12 transition-transform" />
-              ) : (
-                <LuMoonStar className="h-5 w-5 hover:rotate-12 transition-transform" />
-              )}
-            </motion.button>
-          </div>
+        <div className="no-print">
+          <ResumeNavbar />
         </div>
 
         <div className="flex flex-row space-x-4 lg:space-x-8 items-center">
@@ -127,6 +24,7 @@ export default function Resume() {
             width={145}
             height={145}
             className="rounded-full border border-gray-900 dark:border-gray-50"
+            priority
           />
           <div className="flex flex-col w-full">
             <div className="grid grid-row-2 md:flex md:flex-row md:items-center gap-2 justify-between">
@@ -146,35 +44,12 @@ export default function Resume() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:gap-6 gap-2 my-4">
-          <motion.a href="mailto:devffzanini@gmail.com" target="_blank">
-            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
-              <LuMail className="h-4 w-4" />
-              <p>{translations.resume.icos.mail}</p>
-            </div>
-          </motion.a>
-          <button
-            onClick={handleGeneratePDF}
-            disabled={loading}
-            className="no-print cursor-pointer"
-          >
-            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
-              <LuDownload className="h-4 w-4" />
-              <p>
-                {loading
-                  ? translations.resume.icos.pdf_loading
-                  : translations.resume.icos.pdf_click}
-              </p>
-            </div>
-          </button>
-
-          <button onClick={copyToClipboard} className="no-print cursor-pointer">
-            <div className="flex flex-row gap-2 items-center font-semibold opacity-100 hover:opacity-80">
-              <LuCopy className="icon-body" />
-              <p>{translations.resume.icos.bio}</p>
-            </div>
-          </button>
-        </div>
+        <ResumeActions
+          language={location}
+          aboutText={textResumeAbout}
+          labels={translations.resume.icos}
+          copySuccessText={translations.resume.toast}
+        />
 
         <div className="flex flex-col gap-3">
           <h1 className="text-lg md:text-2xl font-bold">
@@ -188,13 +63,13 @@ export default function Resume() {
             <div key={name} className="flex flex-row gap-2 items-center">
               <Icon className="h-5 w-5" />
               <span className="text-base">{name} - </span>
-              <motion.a
+              <a
                 className="text-base font-semibold"
                 href={href}
                 target="_blank"
               >
                 {label}
-              </motion.a>
+              </a>
             </div>
           ))}
         </div>
@@ -214,13 +89,14 @@ export default function Resume() {
                 </span>
               </div>
               <div className="flex flex-col">
-                <motion.a
+                <p className="text-lg md:text-xl font-semibold ">{exp.title}</p>
+                <a
                   href={exp.link}
-                  className="text-lg md:text-xl font-semibold hover:underline"
+                  className="text-lg font-medium hover:underline pb-2"
                   target="_blank"
                 >
-                  {exp.title}
-                </motion.a>
+                  {exp.company}
+                </a>
                 <RichTextViewer content={exp.description} />
               </div>
             </div>
@@ -242,13 +118,13 @@ export default function Resume() {
                 </span>
               </div>
               <div className="flex flex-col">
-                <motion.a
+                <a
                   href={edu.link}
                   className="text-lg md:text-xl font-semibold hover:underline"
                   target="_blank"
                 >
                   {edu.title}
-                </motion.a>
+                </a>
                 <span className="text-base md:text-lg">{edu.region}</span>
               </div>
             </div>

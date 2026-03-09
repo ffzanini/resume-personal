@@ -9,13 +9,12 @@ import {
   ReactNode,
 } from "react";
 
+import { LanguageLoader } from "@/components";
 import { en, es, pt } from "../locales";
 
-type Locations = "en" | "es" | "pt";
-
 export interface InternacionalizationInterface {
-  location: Locations;
-  setLocation: (location: Locations) => void;
+  location: "en" | "es" | "pt";
+  setLocation: (location: "en" | "es" | "pt") => void;
   translations: typeof pt;
 }
 
@@ -35,55 +34,78 @@ const useTranslation = () => {
   return context;
 };
 
-const getInitialLanguage = (): Locations => {
+const STORAGE_KEY = "language";
+
+type Locations = "en" | "es" | "pt";
+
+function isValidLocation(value: string | null): value is Locations {
+  return value === "pt" || value === "en" || value === "es";
+}
+
+function getLanguageFromNavigator(): Locations {
+  if (typeof navigator === "undefined" || !navigator.language) return "en";
+  const browserLang = navigator.language.split("-")[0]?.toLowerCase();
+
+  if (browserLang === "pt") return "pt";
+  if (browserLang === "es") return "es";
+  if (browserLang === "en") return "en";
+  return "en";
+}
+
+function getInitialLanguage(): Locations {
   if (typeof window === "undefined") return "en";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const lang = urlParams.get("lang");
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (isValidLocation(stored)) return stored;
 
-  if (lang === "pt" || lang === "en" || lang === "es") return lang as Locations;
-
-  const browserLang = navigator.language?.split("-")[0];
-  if (browserLang === "pt" || browserLang === "en" || browserLang === "es") {
-    return browserLang as Locations;
-  }
-
-  return "en";
-};
+  return getLanguageFromNavigator();
+}
 
 const InternacionalizationProvider = ({
   children,
 }: {
   children: ReactNode;
 }) => {
-  const [location, setLocation] = useState<Locations | null>(null);
+  const [location, setLocationState] = useState<Locations | null>(null);
+
+  const setLocation = useCallback((newLang: Locations) => {
+    setLocationState(newLang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(STORAGE_KEY, newLang);
+    }
+  }, []);
 
   useEffect(() => {
     const initialLang = getInitialLanguage();
-    setLocation(initialLang);
+    setLocationState(initialLang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(STORAGE_KEY, initialLang);
+    }
   }, []);
 
   useEffect(() => {
     if (location) {
       document.body.setAttribute("data-language-ready", "true");
+      document.documentElement.lang = location;
     }
   }, [location]);
 
-  const getTranslations = useCallback(() => {
-    if (location === "en") return en;
-    if (location === "es") return es;
-    return pt;
-  }, [location]);
-
   const objTranslations = useMemo(() => {
-    return {
-      location: location || "pt",
-      setLocation,
-      translations: getTranslations(),
-    };
-  }, [location, getTranslations]);
+    const currentLocation = location ?? "en";
 
-  if (location === null) return null;
+    return {
+      location: currentLocation,
+      setLocation,
+      translations:
+        currentLocation === "en"
+          ? en
+          : currentLocation === "es"
+            ? es
+            : pt,
+    };
+  }, [location, setLocation]);
+
+  if (location === null) return <LanguageLoader />;
 
   return (
     <InternacionalizationContext.Provider value={objTranslations}>

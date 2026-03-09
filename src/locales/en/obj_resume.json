@@ -1,6 +1,6 @@
 {
   "name": "Felipe Frantz Zanini",
-  "description": "Senior Software Engineer in Pelotas, Brazil",
+  "description": "Senior Software Engineer & Frontend Architecture in Pelotas, Brazil",
   "toast": "Text copied to clipboard",
   "icos": {
     "mail": "Send email",
@@ -11,40 +11,53 @@
   },
   "about": {
     "title": "About",
-    "description": "My path in software development began in 2008, during my technical course. In 2010, I completed the program and started my first programming internship — I have been working and growing in the field ever since. Hired as a software engineer that same year, I have worked on more than 90 projects, using languages such as PHP, JavaScript, Ruby, Python and other languages, frameworks and libraries. I am currently a senior software engineer at <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. <br /> Driven by a passion for technology and a commitment to continuous improvement, I completed a degree in Information Technology Management, a postgraduate specialisation in Strategic IT Planning, and began a Master's in Computer Science, which I did not complete for personal reasons. In light of advances in technology and artificial intelligence, I began a postgraduate degree in AI and automation, to stay aligned with market demands and continue growing in my career."
+    "description": "My path in software development began in 2008, during my technical course. In 2010, I completed the program and started my first programming internship — I have been working and growing in the field ever since. Hired as a software engineer that same year, I have worked on more than 90 projects, using languages such as PHP, JavaScript, Ruby, Python and other languages, frameworks and libraries. I am currently a Senior Software Engineer & Frontend Architecture at <b><a href='https://iguatemi.com.br/' target='_blank'>Iguatemi S.A</a></b>. <br /> Driven by a passion for technology and a commitment to continuous improvement, I completed a degree in Information Technology Management, a postgraduate specialisation in Strategic IT Planning, and began a Master's in Computer Science, which I did not complete for personal reasons. In light of advances in technology and artificial intelligence, I began a postgraduate degree in AI and automation, to stay aligned with market demands and continue growing in my career."
   },
   "experience": {
     "title": "Experience",
     "information": [
       {
         "id": 1,
+        "initial_date": "2025",
+        "final_date": "Atual",
+        "title": "Senior Software Engineer & Frontend Architecture",
+        "company": "Iguatemi S.A ➚",
+        "link": "https://iguatemi.com.br/",
+        "description": "Responsible for structuring, leading and developing frontend projects for the operation of all shopping centres of the company. Concept and delivery of management solutions for commercial centres — operation systems for merchants, operational control for employees and applications — with scalable frontend architecture, clean code and best engineering practices. I use React, Next and TypeScript to ensure maintainability, performance and quality in the tools."
+      },
+      {
+        "id": 2,
         "initial_date": "2021",
         "final_date": "Present",
-        "title": "Senior Software Engineer & Tech Lead at nav9 ➚",
+        "title": "Senior Software Engineer & Tech Lead",
+        "company": "nav9 ➚",
         "link": "https://nav9.tech",
         "description": "Responsible for developing frontend projects for the company's clients, also acting as consultant and technical lead. I apply best practices and clean code for leading companies in the Brazilian market, such as Shoppings Iguatemi, UFC, EducaCross, Grupo SEB, and Rede AZ, among others. I use React, Next, and TypeScript as my main technologies to deliver innovation and quality to the projects I work on."
       },
       {
-        "id": 2,
+        "id": 3,
         "initial_date": "2020",
         "final_date": "2021",
-        "title": "CAPES Master's Scholar at UFPel ➚",
+        "title": "CAPES Master's Scholar",
+        "company": "Universidade Federal de Pelotas (UFPel) ➚",
         "link": "https://portal.ufpel.edu.br/en/",
         "description": "Responsible for extending the simulator developed and used by the research group for modelling and simulation of Wireless Sensor Networks (WSNs). Using real data collected by traps designed by the group, we simulated their behaviour in natural environments, obtaining information on battery life, data collection capacity, communication range between traps, and coverage. The Eboracum simulator was developed and extended mainly in Java. This work led to two scientific papers: one on <b><u><a href='https://ieeexplore.ieee.org/document/8116572' target='_blank'>performance and energy consumption</a></u></b> and another on <b><u><a href='https://eventos.unipampa.edu.br/sbiagro/files/2021/11/sbiagro2021-anais.pdf#page=219' target='_blank'>WSN simulation and modelling</a></u></b>."
       },
       {
-        "id": 3,
+        "id": 4,
         "initial_date": "2016",
         "final_date": "2020",
-        "title": "Founder & CTO at Alpago ➚",
+        "title": "Founder & CTO",
+        "company": "Alpago ➚",
         "link": "https://wp.ufpel.edu.br/conectar/?s=alpago",
         "description": "ALPAGO was created to support the organisation and communication of the sheep farming production chain, addressing two long-standing problems in the sector. In 2016, the startup was incubated at Conectar and, in 2017, graduated from the <b><u><a href='https://www.inovativa.online/aceleradas-e-graduadas-inovativa/' target='_blank'>Inovativa Brasil</a></u></b> programme, standing out for its relevance. The sustainability of sheep farming depends on actions that systemically coordinate every link in the chain.\nI was responsible for system development, including requirements gathering, feasibility assessment, documentation, design, development, methodology selection, and testing. I also engaged with users and partners to gather feedback and deliver ongoing value to the community.\nMain technologies: PHP with CodeIgniter, HTML5, CSS3 with Bootstrap, JavaScript, and MySQL."
       },
       {
-        "id": 4,
+        "id": 5,
         "initial_date": "2010",
         "final_date": "2015",
-        "title": "Software Engineer at ZapShop Informática ➚",
+        "title": "Software Engineer",
+        "company": "ZapShop Informática ➚",
         "link": "https://zapshop.com.br/sobre/",
         "description": "Responsible for client support in the development area: analysis of proposed systems, documentation, and development of custom solutions. I also delivered training for clients and new team members, and carried out testing and system maintenance.\nMain technologies: Visual Basic, PHP with CodeIgniter, Laravel and CakePHP, HTML5, CSS3 with Bootstrap and Material-UI, JavaScript, and MySQL."
       }
